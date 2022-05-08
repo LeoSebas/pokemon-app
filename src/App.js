@@ -13,7 +13,7 @@ function App() {
   /// Recupero el usuario del localstora si existe
   const initialUser = window.localStorage.getItem('user')
 
-  /// Navigate para redireccionar
+
   /// const navigate = useNavigate()
 
   const [user, setUser] = useState(initialUser)

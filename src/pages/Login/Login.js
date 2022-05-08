@@ -13,7 +13,6 @@ export default function Login() {
 
     useEffect(
         /// Ternario para redireccionar a la pagina principal si ya inicio sesión
-
         () => user ? navigate('/') : undefined
         , [user, navigate])
 
