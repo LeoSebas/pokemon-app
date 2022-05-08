@@ -1,24 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { Container } from '@mui/material';
+import { AuthProvider } from './context/AuthContext';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
+
+import { Home, Login, Landing } from './pages'
+
+
 
 function App() {
+
+  /// Recupero el usuario del localstora si existe
+  const initialUser = window.localStorage.getItem('user')
+
+  /// Navigate para redireccionar
+  /// const navigate = useNavigate()
+
+  const [user, setUser] = useState(initialUser)
+
+
+  function userChanged(user) {
+    setUser(user)
+    window.localStorage.setItem('user', JSON.stringify(user))
+  }
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container >
+      <AuthProvider value={{user, userChanged}}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={user ? <Home /> : <Landing />} />
+            <Route path='/login' element={ <Login />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
+    </Container>
   );
 }
 
