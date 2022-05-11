@@ -10,6 +10,7 @@ import { ThemeProvider } from "@emotion/react";
 import "./App.css";
 import { CustomAppBar } from "./components/CustomAppBar";
 import { View } from "./pages/View/View";
+import { NotFound } from "./pages/NotFound/NotFound";
 
 
 
@@ -37,7 +38,8 @@ function App() {
             <Routes>
               <Route path="/" element={user ? <Home /> : <Landing />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/pokemon/:id" element={<View />}/>
+              {user ? <Route path="/pokemon/:id" element={<View />}/>: null}
+              <Route path="*" element={ <NotFound />} />
             </Routes>
           </BrowserRouter>
         </AuthProvider>

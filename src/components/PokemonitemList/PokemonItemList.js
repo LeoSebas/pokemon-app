@@ -8,20 +8,36 @@ export function PokemonItemList({ name, url, index }) {
   const baseUrl =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  function onClickItem(){
-    navigate(`pokemon/${index}`)
+  function onClickItem() {
+    navigate(`pokemon/${index}`);
   }
 
-
   return (
-    <Box onClick={onClickItem} maxWidth="xs" sx={{background:"white", margin:"10px", border:"solid 5px", borderRadius: "10px"}}>
+    <Box
+      onClick={onClickItem}
+      maxWidth="xs"
+      sx={{
+        display: "flex",
+        flexDirection: "column",  
+        alignItems: "center",
+        alignContent: "center",
+        backdropFilter: "blur(30px)",
+        margin: "10px",
+        border: "solid 5px rgba(255,255,255,0.4)",
+        borderRadius: "10px",
+      }}
+    >
       <Typography variant="h5">{name ?? "nombre?"}</Typography>
       <Box>
-        <img width="100px" height="100px" src={`${baseUrl}${index}.png`} alt="Loading pokemon..."/>
+        <img
+          width="100px"
+          height="100px"
+          src={`${baseUrl}${index}.png`}
+          alt="Loading pokemon..."
+        />
       </Box>
-    </Box>)
-
-
+    </Box>
+  );
 }

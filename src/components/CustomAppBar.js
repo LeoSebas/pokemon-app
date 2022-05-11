@@ -21,9 +21,6 @@ export function CustomAppBar() {
         <img width="100px" src={LogoImage} alt="F" />
       </Box>
       <Toolbar sx={{}}>
-        <Box>
-          <Typography variant="subtitle1">Cambiar tema</Typography>
-        </Box>
       </Toolbar>
     </AppBar>
   );

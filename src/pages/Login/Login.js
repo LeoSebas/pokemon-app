@@ -55,11 +55,20 @@ export default function Login() {
       borderRadius: "10px",
       height: "85vh",
     }}
-    >
+    > 
+      <Container
+        sx={{
+          flex: "1",
+        }
+        }>
+
+        </Container>
       <Container
         component="form"
         maxWidth="sm"
         sx={{
+          flex:"2", 
+          display: "flex",  
           position: "relative",
           flexDirection: "column",
           backgroundColor: "white",
@@ -67,7 +76,12 @@ export default function Login() {
           alignSelf: "center",
         }}
       >
-        <Typography variant="h">Iniciar sesión</Typography>
+        <Box sx={{
+
+        }}>
+          <Typography variant="h5">Ingrese sus credenciales de inicio de sesión</Typography>
+        </Box>
+        
         <TextField
           id="outlined"
           label="Email"

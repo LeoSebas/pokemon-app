@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Chip, Container, Typography } from "@mui/material";
 
 export function PokemonCard({ pokemon }) {
   return (
@@ -33,11 +33,14 @@ export function PokemonCard({ pokemon }) {
           borderRadius: "25px",
           display: "flex",
           flexDirection: "column",
+          alignItems:"center",
           width: "100%",
         }}
       >
-        <Box sx={{ flex: "1" }}>
-          <Typography variant="h3">{`${pokemon.name}`}</Typography>
+        <Box sx={{ flex: "1", marginTop:"50px" }}>
+          {pokemon.types.map(({type}, i) => {
+              return <Chip key={i} label={`${type.name}`} />
+          })}
         </Box>
       </Box>
     </Container>

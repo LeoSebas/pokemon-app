@@ -1,4 +1,4 @@
 body{
-    background: center no-repeat url('./assets/pokemon-cover.png');
+    background: center url('./assets/pokemon-cover.png');
     background-size: cover;
 }

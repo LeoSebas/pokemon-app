@@ -34,14 +34,22 @@ export default function Home() {
     }
 
 
-    return <Container>
+    return <Container sx={{
+        marginTop: "20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        background: "rgba(255,255,255,0.2)",
+        borderRadius: "10px",
+        height: "85vh",
+      }}>
         <h1>Home Page {`Usuario ${user.email}`}</h1>
-        <Container maxWidth="min-content" sx={{display:"grid", gridTemplateColumns:"repeat(4, 1fr)", alignItems:"center" }}>
+        <Container maxWidth="min-content" sx={{display:"grid", gridTemplateColumns:"repeat(5, 1fr)", alignItems:"center" }}>
             {pokemons.map(({name , url } ,i)=> {
                 return <PokemonItemList name={name} url = {url} index={(i+1)+((nroPage-1)*20)}  key={i}/>
             })}
         </Container>
-        <Container sx={{display: "inline-flex", flexDirection:"row", alignItems:"center"}}>
+        <Container maxWidth="min-content" sx={{display: "inline-flex", flexDirection:"row", alignItems:"center"}}>
             <Button disabled={nroPage<=1} onClick={onClickPrev} variant="contained">Anterior</Button>
             <Box variant="span">{`Página N° ${nroPage}`}</Box>
             <Button disabled={lastPage} onClick={onClickNext} variant="contained">Siguiente</Button>
