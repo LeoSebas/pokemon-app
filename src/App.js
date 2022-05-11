@@ -1,42 +1,51 @@
-import './App.css';
-import { useState } from 'react';
-import { Container } from '@mui/material';
-import { AuthProvider } from './context/AuthContext';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import {
+  Box , createTheme, CssBaseline
+} from "@mui/material";
+import { AuthProvider } from "./context/AuthContext";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home, Login, Landing } from "./pages";
+import { useUser } from "./hooks/useUser";
+import { ThemeProvider } from "@emotion/react";
 
-import { Home, Login, Landing } from './pages'
+import "./App.css";
+import { CustomAppBar } from "./components/CustomAppBar";
+import { View } from "./pages/View/View";
 
 
 
 function App() {
+  const [user, userChanged] = useUser();
 
-  /// Recupero el usuario del localstora si existe
-  const initialUser = window.localStorage.getItem('user')
+  /// Credenciales válidad de inicio de sesión.
+  const credentials = { email: "user@pokemon.com", password: "pokemon" };
+  
 
-
-  /// const navigate = useNavigate()
-
-  const [user, setUser] = useState(initialUser)
-
-
-  function userChanged(user) {
-    setUser(user)
-    window.localStorage.setItem('user', JSON.stringify(user))
-  }
-
-
+  const theme = createTheme({
+  })
 
   return (
-    <Container >
-      <AuthProvider value={{user, userChanged}}>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={user ? <Home /> : <Landing />} />
-            <Route path='/login' element={ <Login />} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box
+        component="main"
+        sx={{ height: "100vh", margin: "0", }}
+      >
+        {/** AppBar Component */}
+        <CustomAppBar />
+        <AuthProvider value={{ user, userChanged, credentials }}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={user ? <Home /> : <Landing />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/pokemon/:id" element={<View />}/>
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+
+        {/** Footer Component */}
+        <footer></footer>
+      </Box>
+    </ThemeProvider>
   );
 }
 
